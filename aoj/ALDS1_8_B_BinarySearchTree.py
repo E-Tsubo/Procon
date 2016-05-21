@@ -51,7 +51,7 @@ class BinaryTree(object):
 		tmp_node = self.Node(data)
 		guess_parent = None
 		x = self.root
-		while x != None:
+		while x is not None:
 			guess_parent = x
 			if data < x.data:
 				x = x.left
@@ -85,7 +85,20 @@ class BinaryTree(object):
 		self.showInorder(n.left)
 		print("", end= " ")
 		print(n.data, end="")
-		self.showInorder(n.right)		
+		self.showInorder(n.right)
+		
+	def find(self, key):
+		x = self.root
+		while( x is not None):
+			if x.data == key:
+				print("yes")
+				return
+			elif key < x.data:
+				x = x.left
+			else:
+				x = x.right
+		
+		print("no")
 
 
 tree = BinaryTree()
@@ -96,6 +109,8 @@ for i in range(n):
 	
 	if inputs[0] == "insert":
 		tree.insert(int(inputs[1]))
+	elif inputs[0] == "find":
+		tree.find(int(inputs[1]))
 	elif inputs[0] == "print":
 		tree.showInorder(tree.getRoot())
 		print("")

@@ -16,8 +16,6 @@ class BinaryTree(object):
 			self.left = left
 			self.right = right
 		
-		#Too slow...
-		#-------------------------------
 		def getData(self):
 			return self.data
 			
@@ -38,8 +36,7 @@ class BinaryTree(object):
 	
 		def getRight(self):
 			return self.right
-		#-------------------------------
-		
+	
 	"Constructor"
 	def __init__(self):
 		self.root = None
@@ -53,39 +50,36 @@ class BinaryTree(object):
 		x = self.root
 		while x != None:
 			guess_parent = x
-			if data < x.data:
-				x = x.left
+			if data < x.getData():
+				x = x.getLeft()
 			else:
-				x = x.right
+				x = x.getRight()
 				
-		#tmp_node.setParent(guess_parent)
-		tmp_node.parent = guess_parent
-		if guess_parent is None: #If Tree is empty,
+		tmp_node.setParent(guess_parent)
+		if guess_parent == None: #If Tree is empty,
 			self.root = tmp_node
-		elif tmp_node.data < guess_parent.data:
-			#guess_parent.setLeft(tmp_node)
-			guess_parent.left = tmp_node
+		elif tmp_node.getData() < guess_parent.getData():
+			guess_parent.setLeft(tmp_node)
 		else:
-			#guess_parent.setRight(tmp_node)
-			guess_parent.right = tmp_node
+			guess_parent.setRight(tmp_node)
 	
 	def showPreorder(self, n):
-		if n is None:
+		if n == None:
 			return 
 		
 		print("", end= " ")
-		print(n.data, end="")
-		self.showPreorder(n.left)
-		self.showPreorder(n.right)
+		print(n.getData(), end="")
+		self.showPreorder(n.getLeft())
+		self.showPreorder(n.getRight())
 		
 	def showInorder(self, n):
-		if n is None:
+		if n == None:
 			return 
 		
-		self.showInorder(n.left)
+		self.showInorder(n.getLeft())
 		print("", end= " ")
-		print(n.data, end="")
-		self.showInorder(n.right)		
+		print(n.getData(), end="")
+		self.showInorder(n.getRight())		
 
 
 tree = BinaryTree()
